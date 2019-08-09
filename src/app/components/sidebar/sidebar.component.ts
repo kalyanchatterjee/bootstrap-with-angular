@@ -14,6 +14,8 @@ export class SidebarComponent implements OnInit {
   timeframeFilters: Filter[];
 
   ngOnInit() {
-    this.timeframeFilters = this.dataService.getTimeframeFilters();
+    this.dataService.getTimeframeFilters().subscribe(filters => {
+      this.timeframeFilters = filters;
+    });
   }
 }

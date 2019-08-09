@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { MainComponent } from "./components/main/main.component";
@@ -8,6 +9,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { FilterComponent } from "./components/filter/filter.component";
 
 import { DataService } from "./services/data.service";
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,10 @@ import { DataService } from "./services/data.service";
     MainComponent,
     HeaderComponent,
     SidebarComponent,
-    FilterComponent
+    FilterComponent,
+    CardComponent
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, HttpClientModule],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

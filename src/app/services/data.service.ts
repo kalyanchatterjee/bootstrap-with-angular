@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+// Models
+import { Card } from "../models/card";
 import { Filter } from "../models/filter";
 
 const httpOptions = {
@@ -11,31 +13,15 @@ const httpOptions = {
   providedIn: "root"
 })
 export class DataService {
-  constructor() {}
+  getCardsUrl: string = "http://10.126.224.34:3000/api/data/cards/";
+  getTimeframesUrl: string = "http://10.126.224.34:3000/api/data/timeframe/";
+  constructor(private http: HttpClient) {}
 
-  getTimeframeFilters(): Filter[] {
-    const filters = [
-      {
-        value: "None",
-        text: "Select timeframe"
-      },
-      {
-        value: "WTD",
-        text: "WTD"
-      },
-      {
-        value: "MTD",
-        text: "MTD"
-      },
-      {
-        value: "QTD",
-        text: "QTD"
-      },
-      {
-        value: "YTD",
-        text: "YTD"
-      }
-    ];
-    return filters;
+  getCardsData(): Observable<Card[]> {
+    return this.http.get<Card[]>(this.getCardsUrl);
+  }
+
+  getTimeframeFilters(): Observable<Filter[]> {
+    return this.http.get<Filter[]>(this.getTimeframesUrl);
   }
 }
