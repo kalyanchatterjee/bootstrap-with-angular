@@ -7,5 +7,6 @@ import { Filter } from "../../models/filter";
   styleUrls: ["./filter.component.css"]
 })
 export class FilterComponent {
+  @Input() label: String;
   @Input() filters: Filter[];
 }

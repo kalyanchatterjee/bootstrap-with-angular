@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../../services/data.service";
-import { fromEventPattern } from "rxjs";
 import { Card } from "../../models/card";
 
 @Component({
@@ -16,9 +15,11 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.loaded = false;
-    this.dataService.getCardsData().subscribe(cards => {
-      this.cards = cards;
-      this.loaded = true;
-    });
+    setTimeout(() => {
+      this.dataService.getCardsData().subscribe(cards => {
+        this.cards = cards;
+        this.loaded = true;
+      });
+    }, 2000);
   }
 }
