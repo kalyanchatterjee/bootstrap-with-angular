@@ -22,4 +22,16 @@ export class MainComponent implements OnInit {
       });
     }, 2000);
   }
+
+  // Passing a timeframe filter
+  getCards(timeframe?) {
+    this.dataService.getCardsData(timeframe).subscribe(cards => {
+      this.cards = cards;
+      this.loaded = true;
+    });
+  }
+
+  applyFilter(timeframe) {
+    this.getCards(timeframe);
+  }
 }

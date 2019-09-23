@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { DataService } from "../../services/data.service";
 import { Filter } from "../../models/filter";
 
@@ -8,6 +8,10 @@ import { Filter } from "../../models/filter";
   styleUrls: ["./sidebar.component.css"]
 })
 export class SidebarComponent implements OnInit {
+  // Define filters
+  timeframe: Number;
+  @Output() applyFilters: EventEmitter<Number> = new EventEmitter();
+
   constructor(private dataService: DataService) {}
 
   // Declare all your filter arrays, corresponding labels and ids here.
@@ -15,6 +19,10 @@ export class SidebarComponent implements OnInit {
   timeframeFilters: Filter[];
   timeframeLabel: String;
   timeframeName: String;
+
+  onSubmit(filter: Filter) {
+    console.log(filter);
+  }
 
   ngOnInit() {
     // Timeframe filter - Start
